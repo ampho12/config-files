@@ -2,9 +2,12 @@ set nocompatible 		" disable compatibility with old time vi
 set showmatch			" show matching brackets
 set hlsearch			" highlight search results
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
 set expandtab
 set autoindent
 set smarttab
@@ -32,6 +35,26 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+
+" for resizing
+" designed to let Alt+Shift +/-/</> do the resizing
+nnoremap <A-+> <C-w>+
+nnoremap <A-_> <C-w>-
+nnoremap <A-<> <C-w><
+nnoremap <A->> <C-w>>
+
+
+" for tabs
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+" for search and replace
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 "" PLUGINS
@@ -46,13 +69,33 @@ Plug 'navarasu/onedark.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" For lsp
 Plug 'neovim/nvim-lspconfig'
+
+" telescope.nvim begin
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+" coq
+Plug 'ms-jpq/coq_nvim'
+
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+" telescope stuff ends
+
 " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 
 lua <<EOF
+local lsp = require "lspconfig"
+local coq = require "coq"
+
 
 require('onedark').setup {
     style = 'darker',
@@ -63,7 +106,6 @@ require('onedark').load()
 require'nvim-treesitter.configs'.setup {
     highlight = { enable = true },
     -- indent = {enable = true} -- this line causes commenting to break for some reason
-    -- local lsp = require "lspconfig"
-    -- local coq = require "coq"
 }
+
 EOF
