@@ -35,6 +35,8 @@ vim.keymap.set('n', 'td', ':tabclose<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.wo.number = true
+vim.o.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+vim.o.undofile = true
 
 
 

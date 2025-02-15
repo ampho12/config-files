@@ -23,13 +23,38 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  spec = {
-    -- import your plugins
-    { import = "plugins" },
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+    -- {
+    --     "neovim/nvim-lspconfig",
+    --     lazy = false,
+    --     config = function()
+    --         -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    --         -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    --         local lspconfig = require("lspconfig")
+    --         lspconfig.rust_analyzer.setup({
+    --             settings = {
+    --                 ["rust-analyzer"] = {
+    --                     cargo = { allFeatures = true },
+    --                     procMacro = { enable = true },
+    --                     checkOnSave = {
+    --                         command = "clippy",
+    --                     },
+    --                 },
+    --             },
+    --         })
+
+    --         -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+    --         -- vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, {})
+    --         -- vim.keymap.set("n", "<leader>fr", vim.lsp.buf.references, {})
+    --         -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+    --     end,
+    -- },
+    spec = {
+      -- import your plugins
+      { import = "plugins" },
+    },
+    -- Configure any other settings here. See the documentation for more details.
+    -- colorscheme that will be used when installing plugins.
+    -- install = { colorscheme = { "tokyonight" } },
+    -- automatically check for plugin updates
+    -- checker = { enabled = false },
 })
