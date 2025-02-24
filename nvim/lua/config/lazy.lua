@@ -25,7 +25,7 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     -- {
     --     "neovim/nvim-lspconfig",
-    --     lazy = false,
+    -- lazy = true,
     --     config = function()
     --         -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     --         -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
